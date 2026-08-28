@@ -6,41 +6,56 @@
 <title>Malla de Ingeniería Civil - PUCE Sede Santo Domingo</title>
 <style>
   :root{
-    --ink:#111318;
-    --muted:#6b7280;
-    --year:#302f35;
-    --semester:#50545c;
-    --track:#e5e7eb;
     --accent:#08b7a4;
-    --surface:#ffffff;
-    --surface-2:#f8fafc;
-    --border:#e5e7eb;
-    --shadow:0 8px 24px rgba(17,24,39,.08);
+    --accent-soft:rgba(8,183,164,.14);
+
+    /* PALETA GLOBAL - TEMA CLARO.
+       Todo el sitio toma el color seleccionado en "Color del sitio". */
+    --ink:color-mix(in srgb, var(--accent) 7%, #111318);
+    --muted:color-mix(in srgb, var(--accent) 10%, #6b7280);
+    --year:color-mix(in srgb, var(--accent) 24%, #2d2f34);
+    --semester:color-mix(in srgb, var(--accent) 22%, #50545c);
+    --track:color-mix(in srgb, var(--accent) 13%, #e5e7eb);
+    --surface:color-mix(in srgb, var(--accent) 3%, #ffffff);
+    --surface-2:color-mix(in srgb, var(--accent) 9%, #f8fafc);
+    --panel-bg:color-mix(in srgb, var(--accent) 5%, #ffffff);
+    --border:color-mix(in srgb, var(--accent) 18%, #e5e7eb);
+    --footer-bg:color-mix(in srgb, var(--accent) 24%, #ffffff);
+    --shadow:0 10px 28px color-mix(in srgb, var(--accent) 12%, rgba(17,24,39,.12));
     --radius:10px;
-    --page-bg:linear-gradient(135deg,
-      color-mix(in srgb, var(--accent) 16%, #ffffff) 0%,
-      #ffffff 44%,
-      color-mix(in srgb, var(--accent) 11%, #f4fbfa) 100%);
-    --panel-bg:#ffffff;
-    --footer-bg:color-mix(in srgb, var(--accent) 10%, #ffffff);
-    --accent-soft:rgba(8,183,164,.12);
+
+    /* Fondo tipo degradado como la referencia: claro arriba, color más visible abajo. */
+    --page-bg:
+      radial-gradient(circle at 12% 0%, color-mix(in srgb, var(--accent) 12%, transparent) 0%, transparent 33%),
+      radial-gradient(circle at 88% 18%, color-mix(in srgb, var(--accent) 10%, transparent) 0%, transparent 30%),
+      linear-gradient(180deg,
+        color-mix(in srgb, var(--accent) 3%, #ffffff) 0%,
+        color-mix(in srgb, var(--accent) 8%, #ffffff) 34%,
+        color-mix(in srgb, var(--accent) 19%, #ffffff) 68%,
+        color-mix(in srgb, var(--accent) 32%, #ffffff) 100%);
   }
   body[data-theme="dark"]{
-    --ink:#f4f7fb;
-    --muted:#aab2bf;
-    --year:#181b21;
-    --semester:#292e36;
-    --track:#303741;
-    --surface:#20252d;
-    --surface-2:#171b21;
-    --border:#343b46;
-    --shadow:0 10px 30px rgba(0,0,0,.28);
-    --page-bg:linear-gradient(135deg,
-      color-mix(in srgb, var(--accent) 20%, #090d12) 0%,
-      #11151a 46%,
-      color-mix(in srgb, var(--accent) 12%, #161c23) 100%);
-    --panel-bg:#181d24;
-    --footer-bg:color-mix(in srgb, var(--accent) 9%, #151a20);
+    /* PALETA GLOBAL - TEMA OSCURO.
+       Conserva el mismo color elegido, pero mezclado con negros. */
+    --ink:color-mix(in srgb, var(--accent) 5%, #f4f7fb);
+    --muted:color-mix(in srgb, var(--accent) 12%, #aab2bf);
+    --year:color-mix(in srgb, var(--accent) 22%, #111318);
+    --semester:color-mix(in srgb, var(--accent) 18%, #242831);
+    --track:color-mix(in srgb, var(--accent) 15%, #303741);
+    --surface:color-mix(in srgb, var(--accent) 8%, #181c22);
+    --surface-2:color-mix(in srgb, var(--accent) 12%, #11151a);
+    --panel-bg:color-mix(in srgb, var(--accent) 9%, #12161b);
+    --border:color-mix(in srgb, var(--accent) 23%, #303640);
+    --footer-bg:color-mix(in srgb, var(--accent) 16%, #0c0f13);
+    --shadow:0 12px 34px color-mix(in srgb, var(--accent) 10%, rgba(0,0,0,.48));
+    --page-bg:
+      radial-gradient(circle at 15% 0%, color-mix(in srgb, var(--accent) 16%, transparent) 0%, transparent 34%),
+      radial-gradient(circle at 86% 16%, color-mix(in srgb, var(--accent) 12%, transparent) 0%, transparent 32%),
+      linear-gradient(180deg,
+        color-mix(in srgb, var(--accent) 2%, #050609) 0%,
+        color-mix(in srgb, var(--accent) 6%, #07080c) 36%,
+        color-mix(in srgb, var(--accent) 12%, #08090d) 68%,
+        color-mix(in srgb, var(--accent) 21%, #07080b) 100%);
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -51,7 +66,7 @@
     background:var(--page-bg);
     background-attachment:fixed;
     background-size:cover;
-    transition:background .35s ease,color .25s ease;
+    transition:background .45s ease,color .25s ease;
   }
   .page{
     width:min(1800px,96vw);
@@ -122,7 +137,7 @@
     color:#4b5563;
     background:var(--panel-bg);
   }
-  .dot{width:9px;height:9px;border-radius:50%;background:var(--c)}
+  .dot{width:9px;height:9px;border-radius:50%;background:color-mix(in srgb,var(--c) 88%,var(--accent) 12%)}
   .actions{display:flex;gap:8px;align-items:center}
   button{
     border:1px solid var(--border);
@@ -183,15 +198,15 @@
   }
   .course:hover:not(.locked){transform:translateY(-2px);box-shadow:var(--shadow)}
   .course.locked{opacity:.48;cursor:not-allowed;filter:saturate(.55)}
-  .course.approved{outline:3px solid rgba(8,183,164,.25)}
-  .course.approved .course-body{background:linear-gradient(rgba(255,255,255,.22),rgba(255,255,255,.22)),var(--course)}
+  .course.approved{outline:3px solid color-mix(in srgb,var(--accent) 32%, transparent)}
+  .course.approved .course-body{background:linear-gradient(rgba(255,255,255,.18),rgba(255,255,255,.18)),color-mix(in srgb,var(--course) 84%,var(--accent) 16%)}
   .course-top{
     height:27px;
     display:flex;
     align-items:center;
     justify-content:space-between;
     padding:0 7px;
-    background:#4a4a4d;
+    background:color-mix(in srgb,var(--accent) 18%, #3e4045);
     color:#fff;
     font-size:10px;
     font-weight:850;
@@ -209,7 +224,7 @@
   }
   .course-body{
     min-height:105px;
-    background:var(--course);
+    background:color-mix(in srgb,var(--course) 88%,var(--accent) 12%);
     color:#fff;
     display:flex;
     flex-direction:column;
@@ -268,13 +283,17 @@
   }
 
   .site-footer{
-    margin-top:34px;
-    padding:22px 24px;
+    margin-top:46px;
+    padding:20px 0 4px;
     border-top:1px solid var(--border);
-    background:var(--footer-bg);
-    border-radius:16px 16px 0 0;
+    background:transparent;
+    border-radius:0;
+    box-shadow:none;
     color:var(--muted);
-    transition:background .25s ease,border-color .25s ease;
+    transition:border-color .25s ease,color .25s ease;
+  }
+  .year,.semester,.legend-chip,button,.course,.contact-panel,.contact-card,.progress-track{
+    transition:background .35s ease,border-color .35s ease,color .25s ease,box-shadow .25s ease;
   }
   .footer-row{
     display:flex;
@@ -282,6 +301,7 @@
     justify-content:space-between;
     gap:18px;
     flex-wrap:wrap;
+    width:100%;
   }
   .footer-left,.footer-right{
     display:flex;
@@ -327,7 +347,7 @@
     align-items:center;
     justify-content:center;
     padding:24px;
-    background:rgba(10,14,20,.48);
+    background:color-mix(in srgb,var(--accent) 9%, rgba(10,14,20,.58));
     backdrop-filter:blur(5px);
     z-index:100;
   }
@@ -383,7 +403,7 @@
     transform:translate(-50%,20px);
     opacity:0;
     pointer-events:none;
-    background:#24262b;
+    background:color-mix(in srgb,var(--accent) 18%, #24262b);
     color:#fff;
     padding:11px 14px;
     border-radius:10px;
