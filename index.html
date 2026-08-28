@@ -779,11 +779,11 @@ document.getElementById('resetBtn').addEventListener('click',()=>{
 
 // ===== CONFIGURA AQUÍ TUS ENLACES DE CONTACTO =====
 const CONTACTOS = {
-  instagram: 'https://instagram.com/iam_martial_',                 // Ej.: https://instagram.com/tu_usuario
-  email: 'mailto:ef.marcialm1@hotmail.com',                     // Ej.: mailto:correo@ejemplo.com
-  github: '#',                    // Ej.: https://github.com/tu_usuario
-  linkedin: '#',                  // Ej.: https://www.linkedin.com/in/tu_usuario/
-  portfolio: '#'                  // Ej.: https://tu-portafolio.com
+  instagram: 'https://instagram.com/iam_martial',
+  email: 'mailto:ef.marcialm1@hotmail.com',
+  github: 'https://github.com/efmarcialm1-afk',
+  linkedin: '#',
+  portfolio: '#'
 };
 
 // ===== TEMA CLARO / OSCURO =====
@@ -847,14 +847,22 @@ contactModal.addEventListener('click',e=>{if(e.target===contactModal) closeConta
 document.addEventListener('keydown',e=>{if(e.key==='Escape' && contactModal.classList.contains('open')) closeContactModal();});
 
 document.querySelectorAll('[data-contact]').forEach(link=>{
-  const type=link.dataset.contact;
-  const url=CONTACTOS[type] || '#';
-  link.href=url;
-  if(type==='email') link.removeAttribute('target');
-  link.addEventListener('click',e=>{
-    if(!url || url==='#'){
-      e.preventDefault();
+  const type = link.dataset.contact;
+
+  link.addEventListener('click', e=>{
+    e.preventDefault();
+
+    const url = CONTACTOS[type];
+
+    if(!url || url === '#'){
       showToast(`Configura tu ${type} en el bloque CONTACTOS del archivo.`);
+      return;
+    }
+
+    if(type === 'email'){
+      window.location.href = url;
+    } else {
+      window.open(url, '_blank', 'noopener,noreferrer');
     }
   });
 });
